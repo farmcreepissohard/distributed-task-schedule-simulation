@@ -21,9 +21,9 @@ public class TaskController {
 
     @PostMapping("/email")
     public ResponseEntity<String> postEmailTask(@RequestBody JobDto dto) {
-        service.initJob(dto.getJobtype(), dto.getPayload());
+        service.initJob("EMAIL", dto.getPayload());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body("Task " + dto.getJobtype() + " queued successfully.");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Task EMAIL queued successfully.");
     }
 
 }
