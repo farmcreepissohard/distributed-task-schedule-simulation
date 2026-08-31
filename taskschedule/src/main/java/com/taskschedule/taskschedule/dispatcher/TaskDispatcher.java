@@ -31,7 +31,7 @@ public class TaskDispatcher {
     }
 
     @Scheduled(fixedDelay = 15000)
-    public void eraseZombie() {
+    public void resetZombie() {
         int recoveredJobs = service.resetZombieJobs();
         if (recoveredJobs > 0) {
             log.info("Reset {} zombie jobs", recoveredJobs);
