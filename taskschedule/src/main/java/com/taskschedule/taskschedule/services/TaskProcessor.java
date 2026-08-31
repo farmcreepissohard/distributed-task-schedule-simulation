@@ -43,7 +43,7 @@ public class TaskProcessor {
             } else {
                 log.warn("{} retry ", job.getId());
                 job.setStatus(JobStatusEnum.RETRY);
-                job.setRunAt(OffsetDateTime.now().plusMinutes(5));
+                job.setRunAt(OffsetDateTime.now().plusMinutes((long) Math.pow(2, job.getTryTimes())));
             }
         } finally {
             service.updateJob(job);
