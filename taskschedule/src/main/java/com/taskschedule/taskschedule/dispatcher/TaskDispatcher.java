@@ -8,23 +8,33 @@ import com.taskschedule.taskschedule.services.TaskProcessor;
 import com.taskschedule.taskschedule.services.TaskService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
-public class JobDispatcher {
+public class TaskDispatcher {
 
-    private final TaskService taskService;
-    private final TaskProcessor taskProcessor;
+    private final TaskService service;
+    private final TaskProcessor processor;
 
     @Scheduled(fixedDelay = 1000)
     public void dispatch() {
         while (true) {
-            JobEntity claimedJob = taskService.claimNextJob();
+            JobEntity claimedJob = service.claimNextJob();
 
             if (claimedJob == null) {
                 break;
             }
-            taskProcessor.process(claimedJob);
+            processor.process(claimedJob);
+        }
+    }
+
+    @Scheduled(fixedDelay = 15000)
+    public void eraseZombie() {
+        int recoveredJobs = service.resetZombieJobs();
+        if (recoveredJobs > 0) {
+            log.info("Reset {} zombie jobs", recoveredJobs);
         }
     }
 

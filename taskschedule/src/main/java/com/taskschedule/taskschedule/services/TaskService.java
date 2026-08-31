@@ -10,4 +10,6 @@ public interface TaskService {
     public void updateJob(JobEntity job);
 
     public void initJob(String jobType, JsonNode payload);
+
+    public int resetZombieJobs();
 }

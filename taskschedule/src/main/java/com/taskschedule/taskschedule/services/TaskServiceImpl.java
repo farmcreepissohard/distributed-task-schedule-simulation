@@ -39,4 +39,8 @@ public class TaskServiceImpl implements TaskService {
         repository.save(new JobEntity(jobType, payload));
     }
 
+    @Transactional
+    public int resetZombieJobs() {
+        return repository.resetZombieJobs();
+    }
 }
