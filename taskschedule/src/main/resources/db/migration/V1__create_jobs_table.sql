@@ -8,6 +8,6 @@ CREATE TABLE jobs(
     created_at TIMESTAMPTZ DEFAULT NOW(),
     run_at TIMESTAMPTZ DEFAULT NOW(),
 
-    CONSTRAINT check_status CHECK (status IN ('PENDING', 'DONE', 'RETRY', 'ERROR', 'DELETED'))
+    CONSTRAINT check_status CHECK (status IN ('PENDING', 'RUNNING', 'DONE', 'RETRY', 'ERROR', 'DELETED')),
     CONSTRAINT check_retry CHECK(retry_count < max_retries)
 );
