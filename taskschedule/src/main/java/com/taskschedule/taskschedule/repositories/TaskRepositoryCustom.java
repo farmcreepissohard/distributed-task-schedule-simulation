@@ -1,4 +1,4 @@
-package com.taskschedule.service.repositories;
+package com.taskschedule.taskschedule.repositories;
 
 import org.springframework.stereotype.Repository;
 

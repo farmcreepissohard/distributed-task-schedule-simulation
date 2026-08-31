@@ -1,5 +1,5 @@
-package com.taskschedule.models.enums;
+package com.taskschedule.taskschedule.models.enums;
 
 public enum JobStatusEnum {
-    PENDING, DONE, RETRY, ERROR, DELETED
+    PENDING, RUNNING, DONE, RETRY, ERROR, DELETED
 }
