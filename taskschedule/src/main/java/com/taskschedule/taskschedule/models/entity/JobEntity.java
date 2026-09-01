@@ -28,6 +28,7 @@ import tools.jackson.databind.JsonNode;
 @NoArgsConstructor
 public class JobEntity {
 
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;

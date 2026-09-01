@@ -24,10 +24,13 @@ public interface TaskRepository extends JpaRepository<JobEntity, UUID>, TaskRepo
     @Query(value = """
                 UPDATE jobs
                 SET status = CASE
-                        WHEN try_times = 1 THEN 'PENDING'
+                        WHEN try_times <= 1 THEN 'PENDING'
                         ELSE 'RETRY'
                     END,
-                    try_times = try_times - 1
+                    try_times = CASE
+                        WHEN try_times - 1 >= 0 THEN try_times - 1
+                        ELSE 0
+                    END
                 WHERE status = 'RUNNING'
                     AND run_at <= NOW() - INTERVAL '30 minutes'
             """, nativeQuery = true)

@@ -30,13 +30,25 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Transactional
-    public void updateJob(JobEntity job) {
-        repository.save(job);
+    public JobEntity updateJob(JobEntity job) {
+        if (job == null) {
+            throw new IllegalArgumentException("Job is required");
+        }
+        return repository.save(job);
     }
 
     @Transactional
-    public void initJob(String jobType, JsonNode payload) {
-        repository.save(new JobEntity(jobType, payload));
+    public JobEntity initJob(String jobType, JsonNode payload) {
+        if (jobType == null) {
+            throw new IllegalArgumentException("Job type is required");
+        }
+        if (jobType.isEmpty()) {
+            throw new IllegalArgumentException("Job type is invalid");
+        }
+        if (payload == null) {
+            throw new IllegalArgumentException("Payload is required");
+        }
+        return repository.save(new JobEntity(jobType, payload));
     }
 
     @Transactional

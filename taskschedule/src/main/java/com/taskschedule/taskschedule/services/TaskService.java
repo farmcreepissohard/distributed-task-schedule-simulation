@@ -7,9 +7,9 @@ import tools.jackson.databind.JsonNode;
 public interface TaskService {
     public JobEntity claimNextJob();
 
-    public void updateJob(JobEntity job);
+    public JobEntity updateJob(JobEntity job);
 
-    public void initJob(String jobType, JsonNode payload);
+    public JobEntity initJob(String jobType, JsonNode payload);
 
     public int resetZombieJobs();
 }
