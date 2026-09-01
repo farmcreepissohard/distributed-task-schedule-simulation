@@ -29,4 +29,4 @@ jobs:
         run: mvn clean package -DskipTests
 
       - name: Test Build Docker Image
-        run: docker build -t task-schedule:test
+        run: docker build -t task-schedule:test .
