@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class TaskController {
     private final TaskService service;
 
-    @PostMapping("/email")
-    public ResponseEntity<String> postEmailTask(@RequestBody JobDto dto) {
-        service.initJob("EMAIL", dto.getPayload());
+    @PostMapping("/jobs")
+    public ResponseEntity<String> createJob(@RequestBody JobDto dto) {
+        service.initJob(dto.getJobType(), dto.getPayload());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body("Task EMAIL queued successfully.");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Job created");
     }
 
 }

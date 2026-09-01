@@ -5,5 +5,6 @@ import tools.jackson.databind.JsonNode;
 
 @Data
 public class JobDto {
+    private String jobType;
     private JsonNode payload;
 }
